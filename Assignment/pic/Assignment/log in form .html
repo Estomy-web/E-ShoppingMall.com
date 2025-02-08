@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Form</title>
+<style>
+body {background-color: rgb(7, 193, 250);
+  font-family: sans-serif;
+}
+form {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<form id="loginForm">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <span class="error" id="usernameError"></span><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <span class="error" id="passwordError"></span><br><br>
+
+  <button type="button" onclick="validateForm()">Login</button>
+</form>
+
+<script>
+function validateForm() {
+  // Reset error messages
+  document.getElementById("usernameError").textContent = "";
+  document.getElementById("passwordError").textContent = "";
+
+  let isValid = true;
+
+  const username = document.getElementById("username").value;
+  if (username.trim() === "") { // Check for empty username
+    document.getElementById("usernameError").textContent = "Username is required";
+    isValid = false;
+  }
+
+  const password = document.getElementById("password").value;
+  if (password.trim() === "") { // Check for empty password
+    document.getElementById("passwordError").textContent = "Password is required";
+    isValid = false;
+  }
+
+  if (isValid) {
+    // In a real application, you would send the username and password
+    // to a server to verify them against a database or other authentication system.
+
+    // Simulate successful login (replace with actual server-side authentication)
+    // For this example, we'll just check if the username/password are not empty
+    if (username.trim() !== "" && password.trim() !== "") {
+        alert("Login successful!");
+        window.location.href = "Assignment.html"; // Redirect
+    } else {
+        alert("Invalid username or password");
+    }
+
+
+  }
+}
+</script>
+
+</body>
+</html>

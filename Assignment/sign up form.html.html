@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sign Up Form</title>
+<style>
+body {background-color: hsl(190, 91%, 45%);
+  font-family: sans-serif;
+}
+form {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<h2>Sign Up</h2>
+
+<form id="signupForm">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <span class="error" id="usernameError"></span><br><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required>
+  <span class="error" id="emailError"></span><br><br>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required>
+  <span class="error" id="phoneError"></span><br><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <span class="error" id="passwordError"></span><br><br>
+
+  <label for="confirmPassword">Confirm Password:</label>
+  <input type="password" id="confirmPassword" name="confirmPassword" required>
+  <span class="error" id="confirmPasswordError"></span><br><br>
+
+  <button type="button" onclick="validateForm()">Sign Up</button>
+</form>
+
+<script>
+function validateForm() {
+  // Reset error messages
+  document.getElementById("usernameError").textContent = "";
+  document.getElementById("emailError").textContent = "";
+  document.getElementById("phoneError").textContent = "";
+  document.getElementById("passwordError").textContent = "";
+  document.getElementById("confirmPasswordError").textContent = "";
+
+  let isValid = true;
+
+  // Username validation (example: must be at least 3 characters)
+  const username = document.getElementById("username").value;
+  if (username.length < 3) {
+    document.getElementById("usernameError").textContent = "Username must be at least 3 characters";
+    isValid = false;
+  }
+
+  // Email validation (basic example - you can use a more robust regex)
+  const email = document.getElementById("email").value;
+  if (!email.includes("@")) {  // A very basic check
+    document.getElementById("emailError").textContent = "Invalid email format";
+    isValid = false;
+  }
+
+  // Phone validation (example: must be 10 digits - adapt as needed)
+  const phone = document.getElementById("phone").value;
+  if (phone.length !== 10 || isNaN(phone)) { // Basic check, adapt as needed
+    document.getElementById("phoneError").textContent = "Invalid phone number";
+    isValid = false;
+  }
+
+
+  // Password validation (example: must be at least 6 characters)
+  const password = document.getElementById("password").value;
+  if (password.length < 6) {
+    document.getElementById("passwordError").textContent = "Password must be at least 6 characters";
+    isValid = false;
+  }
+
+  // Confirm password validation
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  if (password !== confirmPassword) {
+    document.getElementById("confirmPasswordError").textContent = "Passwords do not match";
+    isValid = false;
+  }
+
+  if (isValid) {
+    // Simulate successful signup (in a real app, you would send data to a server)
+    alert("Sign up successful!");
+
+    // Redirect back to Assignment.html.  You can use different methods:
+    // 1. Using window.location (replace current page):
+    window.location.href = "Assignment.html";
+
+    // 2. Using window.opener (if this signup form was opened in a new window):
+    // if (window.opener) {
+    //   window.opener.location.href = "Assignment.html";
+    //   window.close(); // Close the signup window
+    // } else {
+    //   // Handle the case where there's no opener (e.g., if the user opened the signup page directly)
+    //   window.location.href = "Assignment.html"; // Or some other default behavior
+    // }
+
+
+
+  }
+}
+</script>
+
+</body>
+</html>
